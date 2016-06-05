@@ -12,7 +12,7 @@
     #words {
         margin: 40px 0;
         padding: 0;
-        list-style-type: none;
+        word-spacing: 10px;
     }
     
     h1 {
@@ -20,11 +20,9 @@
         font-family: sans-serif;
     }
     
-    #words li {
+    #words span {
         font-family: monospace;
-        font-size: 20px;
-        display: inline;
-        margin: 0 5px;
+        font-size: 18px;
     }
     
     button {
@@ -36,12 +34,9 @@
 
 <h1>4 palavras aleatórias</h1>
 
-<ul id="words">
-    <li>estamos</li>
-    <li>carregando</li>
-    <li>os</li>
-    <li>dados</li>
-</ul>
+<div id="words">
+    <span>carregando...</span>
+</div>
 
 <button id="randomize-4">4</button>
 <button id="randomize-5">5</button>
@@ -61,14 +56,15 @@
         }
         
         function randomize(n) {
-            var ul = document.getElementById('words');
-            ul.innerHTML = '';
+            var div = document.getElementById('words');
+            div.innerHTML = '';
             
             var selected = randomWords(n);
             for(var i=0; i<n; i++) {
-                var li = document.createElement('li');
-                li.innerText = selected[i];
-                ul.appendChild(li);
+                var span = document.createElement('span');
+                span.innerText = selected[i];
+                div.appendChild(span);
+                div.appendChild(document.createTextNode(" "));
             }
         }
         
