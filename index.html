@@ -38,31 +38,45 @@
 
 <script src="words.js"></script>
 <script>
-    function randomWords(n) {
-        var selected = [];
-        while(selected.length < n) {
-            var word = words[Math.floor(Math.random()*words.length)];
-            if (selected.indexOf(word) == -1)
-                selected.push(word);
+    (function() {
+        function randomWords(n) {
+            var selected = [];
+            while(selected.length < n) {
+                var word = words[Math.floor(Math.random()*words.length)];
+                if (selected.indexOf(word) == -1)
+                    selected.push(word);
+            }
+            return selected;
         }
-        return selected;
-    }
-    
-    function randomize(n) {
-        var ul = document.getElementById('words');
-        ul.innerHTML = '';
         
-        var selected = randomWords(n);
-        for(var i=0; i<n; i++) {
-            var li = document.createElement('li');
-            li.innerText = selected[i];
-            ul.appendChild(li);
+        function randomize(n) {
+            var ul = document.getElementById('words');
+            ul.innerHTML = '';
+            
+            var selected = randomWords(n);
+            for(var i=0; i<n; i++) {
+                var li = document.createElement('li');
+                li.innerText = selected[i];
+                ul.appendChild(li);
+            }
         }
-    }
-    
-    randomize(4);
-    document.getElementById('randomize').addEventListener('click', function() {
+        
         randomize(4);
-    });
+        document.getElementById('randomize').addEventListener('click', function() {
+            randomize(4);
+        });
+    })();
+    
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-5988212-2']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 </script>
 
