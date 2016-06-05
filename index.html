@@ -1,0 +1,68 @@
+<html>
+<meta charset="utf-8">
+
+<style>
+    body {
+        text-align: center;
+    }    
+    
+    #words {
+        margin: 40px 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    h1 {
+        margin-top: 100px;
+        font-family: sans-serif;
+    }
+    
+    #words li {
+        font-family: monospace;
+        font-size: 20px;
+        display: inline;
+        margin: 0 5px;
+    }
+</style>
+
+<h1>4 palavras aleatórias</h1>
+
+<ul id="words">
+    <li>estamos</li>
+    <li>carregando</li>
+    <li>os</li>
+    <li>dados</li>
+</ul>
+
+<button id="randomize">novas palavras</button>
+
+<script src="words.js"></script>
+<script>
+    function randomWords(n) {
+        var selected = [];
+        while(selected.length < n) {
+            var word = words[Math.floor(Math.random()*words.length)];
+            if (selected.indexOf(word) == -1)
+                selected.push(word);
+        }
+        return selected;
+    }
+    
+    function randomize(n) {
+        var ul = document.getElementById('words');
+        ul.innerHTML = '';
+        
+        var selected = randomWords(n);
+        for(var i=0; i<n; i++) {
+            var li = document.createElement('li');
+            li.innerText = selected[i];
+            ul.appendChild(li);
+        }
+    }
+    
+    randomize(4);
+    document.getElementById('randomize').addEventListener('click', function() {
+        randomize(4);
+    });
+</script>
+
