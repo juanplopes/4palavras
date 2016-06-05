@@ -5,9 +5,10 @@
 
 
 <style>
-    body {
+    #content {
+        margin-top: 100px;
         text-align: center;
-    }    
+    }
     
     #words {
         margin: 40px 0;
@@ -16,8 +17,8 @@
     }
     
     h1 {
-        margin-top: 100px;
         font-family: sans-serif;
+        font-size: 24px;
     }
     
     #words span {
@@ -32,15 +33,17 @@
     }
 </style>
 
-<h1>4 palavras aleatórias</h1>
+<div id="content">
+    <button id="randomize-4">4</button>
+    <button id="randomize-5">5</button>
+    <button id="randomize-6">6</button>
 
-<div id="words">
-    <span>carregando...</span>
+    <h1 id="title">4 palavras aleatórias</h1>
+
+    <div id="words">
+        <span>carregando...</span>
+    </div>
 </div>
-
-<button id="randomize-4">4</button>
-<button id="randomize-5">5</button>
-<button id="randomize-6">6</button>
 
 <script src="words.js"></script>
 <script>
@@ -54,8 +57,11 @@
             }
             return selected;
         }
-        
+
         function randomize(n) {
+            var title = document.getElementById('title');
+            title.innerText = n + ' palavras aleatórias';
+
             var div = document.getElementById('words');
             div.innerHTML = '';
             
